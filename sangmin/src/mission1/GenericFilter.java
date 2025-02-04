@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 
 public class GenericFilter {
     private static <T> List<T> filterList(List<T> list, Predicate<T> condition) {
-        return list.stream().filter(condition).collect(Collectors.toList());
+        if (list == null || list.isEmpty()) {
+            throw new IllegalArgumentException("List is empty");
+        }
+        if (condition == null) {
+            throw new IllegalArgumentException("Condition is empty");
+        }
+        return list.stream().filter(condition).collect(Collectors.toUnmodifiableList());
     }
 
     public static void main(String[] args) {

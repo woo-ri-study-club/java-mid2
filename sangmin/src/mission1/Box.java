@@ -1,8 +1,8 @@
 package mission1;
 
-public class Box<T extends Comparable> {
+public class Box <T extends Comparable<T>> {
 
-    private T value;
+    private final T value;
 
     public Box(final T value) {
         this.value = value;
@@ -12,8 +12,8 @@ public class Box<T extends Comparable> {
         return value;
     }
 
-    int compareTo(Box other) {
-        return value.compareTo(other.value);
+    public int compareTo(Box<T> other) {
+        return value.compareTo(other.getValue());
     }
 
 

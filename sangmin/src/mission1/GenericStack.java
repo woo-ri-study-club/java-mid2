@@ -1,9 +1,10 @@
 package mission1;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class GenericStack <T>{
-    private ArrayList<T> stack = new ArrayList<>();
+    private final ArrayList<T> stack = new ArrayList<>();
 
     public void push(T item) {
         stack.add(item);
@@ -11,14 +12,14 @@ public class GenericStack <T>{
 
     public T pop() {
         if (stack.isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("Stack is empty");
         }
         return stack.remove(stack.size() - 1);
     }
 
     public T peek() {
         if (stack.isEmpty()) {
-            return null;
+            throw new IllegalArgumentException("Stack is empty");
         }
         return stack.get(stack.size() - 1);
     }
@@ -36,6 +37,8 @@ public class GenericStack <T>{
         intStack.push(10);
         intStack.push(20);
         System.out.println("Peek: " + intStack.peek()); // 20
+        System.out.println("Pop: " + intStack.pop()); // 20
+        System.out.println("Pop: " + intStack.pop()); // 20
         System.out.println("Pop: " + intStack.pop()); // 20
         System.out.println("Size: " + intStack.size()); // 1
 
