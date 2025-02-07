@@ -1,4 +1,9 @@
-package jaehoon.section03;
+package jaehoon.section03.problem02;
+
+import jaehoon.section03.problem01.Book;
+import jaehoon.section03.problem01.Device;
+import jaehoon.section03.problem01.Goods;
+import jaehoon.section03.problem01.Item;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +25,14 @@ public class PairMain {
 
     Pair<Order, List<Item>> orderPair = Pair.of(new Order(1), items);
 
-    System.out.println("First() = " + orderPair.getFirst());
-    System.out.println("Second() = " + orderPair.getSecond());
+    System.out.println("First(): " + orderPair.getFirst());
+    System.out.println("Second():");
+    printItems(orderPair.getSecond());
+  }
+
+  private static void printItems(List<Item> items) {
+    for (Item item : items) {
+      System.out.println("item = " + item);
+    }
   }
 }

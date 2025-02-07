@@ -1,4 +1,4 @@
-package jaehoon.section03;
+package jaehoon.section03.problem01;
 
 import java.time.LocalDate;
 
@@ -24,18 +24,38 @@ public class StorageMain {
 
     // 아이템 출력
     System.out.println("Book 창고:");
-    Storage.printItems(bookStorage);
+    printItems(bookStorage);
     System.out.println();
 
     System.out.println("Device 창고:");
-    Storage.printItems(deviceStorage);
+    printItems(deviceStorage);
     System.out.println();
 
     // 아이템을 공용 창고로 이동
     System.out.println("아이템을 공용 창고로 이동...");
+    System.out.println("공용 창고:");
     // bookStorage.transferItems(deviceStorage); 상위가 아닌 다른 창고로는 이동 불가
     bookStorage.transferItems(generalStorage);
     deviceStorage.transferItems(generalStorage);
-    Storage.printItems(generalStorage);
+    printItems(generalStorage);
+    System.out.println();
+
+    System.out.println("Book 창고:");
+    printItems(bookStorage);
+    System.out.println();
+
+    System.out.println("Device 창고:");
+    printItems(deviceStorage);
+  }
+
+  // 와일드카드를 활용한 아이템 목록 출력
+  public static void printItems(Storage<? extends Item> storage) {
+    if (storage.isEmpty()) {
+      System.out.println("창고가 비어있습니다.");
+    } else {
+      for (Item item : storage.getItems()) {
+        System.out.println(item);
+      }
+    }
   }
 }

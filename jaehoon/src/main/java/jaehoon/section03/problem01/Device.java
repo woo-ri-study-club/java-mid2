@@ -1,4 +1,4 @@
-package jaehoon.section03;
+package jaehoon.section03.problem01;
 
 import java.time.LocalDate;
 
