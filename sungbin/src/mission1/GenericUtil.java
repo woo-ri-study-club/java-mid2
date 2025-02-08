@@ -21,7 +21,8 @@ public class GenericUtil {
         return max;
     }
 
-    public static <T extends Comparable<? super T>> List<T> mergeSortedLists(List<? extends T> list1, List<? extends T> list2) {
+    public static <T extends Comparable<? super T>> List<T> mergeSortedLists(List<? extends T> list1,
+                                                                             List<? extends T> list2) {
         List<T> mergedList = new ArrayList<>();
         int index1 = 0, index2 = 0;
         int size1 = list1.size(), size2 = list2.size();
