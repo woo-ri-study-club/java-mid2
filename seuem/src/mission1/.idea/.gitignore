@@ -13,3 +13,7 @@ build/
 *.class
 build.gradle
 settings.gradle
+
+# Ignore Gradle wrapper files
+gradlew
+gradlew.bat
