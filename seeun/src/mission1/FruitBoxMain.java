@@ -9,9 +9,12 @@ public class FruitBoxMain {
 
         FruitBox<Apple> fruitBox1 = new FruitBox<>();
         fruitBox1.store(new Apple(10000, "red", 5));
+        fruitBox1.store(new Apple(5000, "purple", 3));
 
         FruitBox<Banana> fruitBox2 = new FruitBox<>();
         fruitBox2.store(new Banana(15000, "black", 2));
+        fruitBox2.store(new Banana(8000, "yellow", 5));
+        fruitBox2.store(new Banana(10000, "green", 1));
 
         FruitBoxInfo.checkRipeness(fruitBox1);
         FruitBoxInfo.checkRipeness(fruitBox2);
