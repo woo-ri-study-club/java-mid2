@@ -23,8 +23,6 @@ public class InvnetoryMain {
     }
 
     private static void printInventoryItems(Inventory<Item> inventory) {
-        for(Item item: inventory.getItems()){
-            System.out.println(item);
-        }
+        inventory.getItems().forEach(System.out::println);
     }
 }

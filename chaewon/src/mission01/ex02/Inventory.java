@@ -19,24 +19,17 @@ public class Inventory<T extends Item> {
             return false;
         }
 
-        items.add(item);
-        return true;
+        return items.add(item);
     }
 
     public void sortByRarity() {
         items.sort(
-                Comparator.comparingInt(Item::getRarity)
+                Comparator.comparingInt(Item::getRarity).reversed()
         );
     }
 
     public int getTotalPrice() {
-        int total = 0;
-
-        for (T item : items) {
-            total += item.getPrice();
-        }
-
-        return total;
+        return items.stream().mapToInt(Item::getPrice).sum();
     }
 
     public List<T> getItems() {
