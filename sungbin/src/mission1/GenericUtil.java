@@ -1,6 +1,7 @@
 package mission1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GenericUtil {
@@ -10,15 +11,7 @@ public class GenericUtil {
             throw new IllegalArgumentException("리스트가 비어 있습니다.");
         }
 
-        T max = list.get(0);
-
-        for (T element : list) {
-            if (element.compareTo(max) > 0) {
-                max = element;
-            }
-        }
-
-        return max;
+        return Collections.max(list);
     }
 
     public static <T extends Comparable<? super T>> List<T> mergeSortedLists(List<? extends T> list1,
@@ -39,13 +32,8 @@ public class GenericUtil {
             }
         }
 
-        while (index1 < size1) {
-            mergedList.add(list1.get(index1++));
-        }
-
-        while (index2 < size2) {
-            mergedList.add(list2.get(index2++));
-        }
+        mergedList.addAll(list1.subList(index1, size1));
+        mergedList.addAll(list2.subList(index2, size2));
 
         return mergedList;
     }
