@@ -20,10 +20,10 @@ public class Main {
 
         List<Integer> list;
 
-        if (choice == 1) {
-            list = new ArrayList<>();
-        } else {
-            list = new LinkedList<>();
+        switch (choice) {
+            case 1 -> list = new ArrayList<>();
+            case 2 -> list = new LinkedList<>();
+            default -> throw new IllegalArgumentException("잘못된 선택지를 입력하셨습니다.");
         }
 
         JosephusSolver solver = new JosephusSolver(list, k);
