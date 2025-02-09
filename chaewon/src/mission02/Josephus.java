@@ -3,8 +3,8 @@ package collection.mission02;
 import java.util.List;
 
 public class Josephus {
-    private List<Integer> list;
-    private int gap;
+    private final List<Integer> list;
+    private final int gap;
 
     public Josephus(List<Integer> list, int gap) {
         this.list = list;
