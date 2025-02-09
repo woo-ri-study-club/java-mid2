@@ -39,6 +39,10 @@ public class GenericUtil {
     }
 
     public static <T extends Number> double average(T[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("잘못된 값이 들어왔습니다.");
+        }
+
         if (array.length == 0) {
             throw new IllegalArgumentException("배열이 비어 있습니다.");
         }
