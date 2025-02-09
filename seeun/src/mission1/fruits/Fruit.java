@@ -14,18 +14,6 @@ public abstract class Fruit {
         this.sweetness = sweetness;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public void setSweetness(int sweetness) {
-        this.sweetness = sweetness;
-    }
-
     public String getName() {
         return name;
     }
