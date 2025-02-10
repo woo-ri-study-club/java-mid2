@@ -1,6 +1,6 @@
 package mission01;
 
-public class Fruit {
+public abstract class Fruit {
     private String origin;
     private int price;
 
