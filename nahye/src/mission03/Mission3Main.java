@@ -1,8 +1,6 @@
 package mission03;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Mission3Main {
     public static void main(String[] args) {
@@ -13,7 +11,7 @@ public class Mission3Main {
         sc.nextLine(); // 버퍼 비우기
         System.out.println("알파벳 소문자로만 이루어진 문자열을 입력하세요.");
 
-        HashSet<String> stringSet = new HashSet<>();
+        Set<String> stringSet = new HashSet<>();
 
         for (int i = 0; i < N; i++) {
             String inputString = sc.nextLine();
@@ -23,7 +21,7 @@ public class Mission3Main {
             stringSet.add(inputString);
         }
 
-        ArrayList<String> newList = new ArrayList<>(stringSet);
+        List<String> newList = new ArrayList<>(stringSet);
 
         newList.sort(String::compareTo);
         System.out.println("사전 순으로 정렬한 결과: " + newList);
