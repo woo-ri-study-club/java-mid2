@@ -17,7 +17,7 @@ public class Mission3Main {
 
         for (int i = 0; i < N; i++) {
             String inputString = sc.nextLine();
-            if (inputString.length() >= 100) {
+            if (inputString.length() > 100) {
                 throw new IllegalArgumentException("최대 길이는 100입니다.");
             }
             stringSet.add(inputString);
