@@ -1,5 +1,6 @@
 package mission04;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -19,7 +20,7 @@ public class Quiz03Main {
 
     private static int[] getMaxSlidingWindow(int[] nums, int k) {
 
-        Deque<Integer> deque = new LinkedList<>();
+        Deque<Integer> deque = new ArrayDeque<>();
         int[] result = new int[nums.length - k + 1];
 
         for (int i = 0; i < nums.length; i++) {
