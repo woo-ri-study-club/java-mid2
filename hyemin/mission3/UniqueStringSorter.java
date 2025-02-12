@@ -8,14 +8,20 @@ public class UniqueStringSorter {
         int n = scanner.nextInt();
         scanner.nextLine();
 
-        Set<String> set = new HashSet<>();
+        Set<String> hashSet = new HashSet<>();
+        Set<String> treeSet = new TreeSet<>();
         for (int i = 0; i < n; i++) {
             String str = scanner.nextLine();
-            set.add(str);
+            hashSet.add(str);
+            treeSet.add(str);
         }
 
-        List<String> result = getSortedUniqueStrings(set);
-        System.out.println("결과 = " + result);
+        //TreeSet -> 코드가 더 간결함.
+        System.out.println("treeSet 결과 = " + treeSet);
+
+        //HashSet -> 메모리 효율과 성능이 더 좋음.
+        List<String> result = getSortedUniqueStrings(hashSet);
+        System.out.println("hashSet 결과 = " + result);
     }
 
     private static List<String> getSortedUniqueStrings(Set<String> set) {
