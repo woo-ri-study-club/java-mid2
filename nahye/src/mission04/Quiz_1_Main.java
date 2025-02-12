@@ -1,6 +1,9 @@
 package mission04;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class Quiz_1_Main {
 
@@ -17,10 +20,11 @@ public class Quiz_1_Main {
 
         Map<Integer, Integer> frequencyTable = countFrequencies(nums);
 
-        TreeMap<Integer, List<Integer>> sortedByFrequency = sortByFrequency(frequencyTable);
+        PriorityQueue<Map.Entry<Integer, Integer>> integers = sortByFrequency(frequencyTable);
 
-        printSortedByFrequency(sortedByFrequency);
+        printSortedByFrequency(integers);
 
+        sc.close();
     }
 
     public static Map<Integer, Integer> countFrequencies(int[] nums) {
@@ -32,32 +36,34 @@ public class Quiz_1_Main {
         return tableForDuplicate;
     }
 
-    private static TreeMap<Integer, List<Integer>> sortByFrequency(Map<Integer, Integer> frequencyTable) {
-        TreeMap<Integer, List<Integer>> treeMap = new TreeMap<>(Collections.reverseOrder());
+    private static PriorityQueue<Map.Entry<Integer, Integer>> sortByFrequency(Map<Integer, Integer> frequencyTable) {
 
-        for (Map.Entry<Integer, Integer> entry : frequencyTable.entrySet()) {
-            treeMap.computeIfAbsent(entry.getValue(),
-                    k -> new ArrayList<>()).add(entry.getKey());
-        }
+        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
+                (a, b) -> {
+                    if (a.getValue().equals(b.getValue())) {
+                        return a.getKey() - b.getKey();
+                    }
+                    return b.getValue() - a.getValue();
+                }
+        );
 
-        for (List<Integer> numbers : treeMap.values()) {
-            Collections.sort(numbers);
-        }
-
-        return treeMap;
+        maxHeap.addAll(frequencyTable.entrySet());
+        return maxHeap;
     }
 
-    private static void printSortedByFrequency(TreeMap<Integer, List<Integer>> treeMap) {
-        List<String> result = new ArrayList<>();
+    private static void printSortedByFrequency(PriorityQueue<Map.Entry<Integer, Integer>> maxHeap) {
 
-        for (Map.Entry<Integer, List<Integer>> entry : treeMap.entrySet()) {
-            for (int num : entry.getValue()) {
-                for (int i = 0; i < entry.getKey(); i++) {
-                    result.add("" + num);
-                }
+        StringBuilder stringBuilder = new StringBuilder();
+
+        while (maxHeap.size() > 0) {
+            Map.Entry<Integer, Integer> entry = maxHeap.poll();
+            int number = entry.getKey();
+            int frequency = entry.getValue();
+
+            for (int i = 0; i < frequency; i++) {
+                stringBuilder.append(number).append(" ");
             }
         }
-
-        System.out.println(result);
+        System.out.println(stringBuilder);
     }
 }
