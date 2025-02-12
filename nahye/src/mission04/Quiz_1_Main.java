@@ -3,6 +3,7 @@ package mission04;
 import java.util.*;
 
 public class Quiz_1_Main {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -32,12 +33,17 @@ public class Quiz_1_Main {
     }
 
     private static TreeMap<Integer, List<Integer>> sortByFrequency(Map<Integer, Integer> frequencyTable) {
-        TreeMap<Integer, List<Integer>> treeMap = new TreeMap<>();
+        TreeMap<Integer, List<Integer>> treeMap = new TreeMap<>(Collections.reverseOrder());
 
         for (Map.Entry<Integer, Integer> entry : frequencyTable.entrySet()) {
             treeMap.computeIfAbsent(entry.getValue(),
                     k -> new ArrayList<>()).add(entry.getKey());
         }
+
+        for (List<Integer> numbers : treeMap.values()) {
+            Collections.sort(numbers);
+        }
+
         return treeMap;
     }
 
