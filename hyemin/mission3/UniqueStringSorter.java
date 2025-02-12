@@ -14,11 +14,11 @@ public class UniqueStringSorter {
             set.add(str);
         }
 
-        List<String> result = removeDuplicatesAndSort(set);
-        System.out.println("결과 = " + result.toString());
+        List<String> result = getSortedUniqueStrings(set);
+        System.out.println("결과 = " + result);
     }
 
-    private static List<String> removeDuplicatesAndSort(Set<String> set) {
+    private static List<String> getSortedUniqueStrings(Set<String> set) {
         List<String> list = new ArrayList<>(set);
         Collections.sort(list);
         return list;
