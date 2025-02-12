@@ -20,5 +20,7 @@ public class UniqueStrings {
         for (String string : uniqueStrings) {
             System.out.println(string);
         }
+
+        br.close();
     }
 }
