@@ -5,7 +5,7 @@ public class Q3_MaxSlidingWindow {
     public static void main(String[] args) {
         int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
         int k = 3;
-//        출력: [3,3,5,5,6,7]
+//      출력: [3,3,5,5,6,7]
 
         maxSlidingWindow(nums, k);
 
