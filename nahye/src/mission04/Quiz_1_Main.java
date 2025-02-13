@@ -20,9 +20,9 @@ public class Quiz_1_Main {
 
         Map<Integer, Integer> frequencyTable = countFrequencies(nums);
 
-        PriorityQueue<Map.Entry<Integer, Integer>> integers = sortByFrequency(frequencyTable);
+        PriorityQueue<Integer> integers = sortByFrequency(frequencyTable);
 
-        printSortedByFrequency(integers);
+        printSortedByFrequency(frequencyTable, integers);
 
         sc.close();
     }
@@ -36,34 +36,31 @@ public class Quiz_1_Main {
         return tableForDuplicate;
     }
 
-    private static PriorityQueue<Map.Entry<Integer, Integer>> sortByFrequency(Map<Integer, Integer> frequencyTable) {
+    private static PriorityQueue<Integer> sortByFrequency(Map<Integer, Integer> frequencyTable) {
 
-        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(
                 (a, b) -> {
-                    if (a.getValue().equals(b.getValue())) {
-                        return a.getKey() - b.getKey();
-                    }
-                    return b.getValue() - a.getValue();
+                    if(frequencyTable.get(a).equals(frequencyTable.get(b)))
+                        return a - b;
+                    return frequencyTable.get(b) - frequencyTable.get(a);
                 }
         );
 
-        maxHeap.addAll(frequencyTable.entrySet());
+        maxHeap.addAll(frequencyTable.keySet());
         return maxHeap;
     }
 
-    private static void printSortedByFrequency(PriorityQueue<Map.Entry<Integer, Integer>> maxHeap) {
+    private static void printSortedByFrequency(Map<Integer, Integer> frequencyTable, PriorityQueue<Integer> maxHeap) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
         while (maxHeap.size() > 0) {
-            Map.Entry<Integer, Integer> entry = maxHeap.poll();
-            int number = entry.getKey();
-            int frequency = entry.getValue();
-
-            for (int i = 0; i < frequency; i++) {
-                stringBuilder.append(number).append(" ");
+            int num = maxHeap.poll();
+            for (int i = 0; i < frequencyTable.get(num) ; i++) {
+                stringBuilder.append(num).append(" ");
             }
         }
+
         System.out.println(stringBuilder);
     }
 }
