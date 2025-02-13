@@ -17,13 +17,13 @@ public class Main {
 
         Set<String> treeset = new TreeSet<>();
         scanner.nextLine();
-        for (int i = 0; i <n; i++) {
+        for (int i = 0; i < n; i++) {
             System.out.println("단어를 입력해주세요.");
             String string = scanner.nextLine();
             treeset.add(string);
         }
         scanner.close();
-        System.out.println(treeset.toString());
+        System.out.println(treeset);
     }
 
 
