@@ -2,6 +2,7 @@ package jaehoon.section11;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class ChessGameMain {
 
@@ -25,8 +26,11 @@ public class ChessGameMain {
 
     // 최고 점수 플레이어 조회
     System.out.println("📌 최고 점수 플레이어");
-    Player topPlayer = game.getTopPlayer();
-    System.out.println(topPlayer);
+    Optional<Player> topPlayer = game.getTopPlayer();
+    topPlayer.ifPresentOrElse(
+        System.out::println,
+        () -> System.out.println("최고 점수 플레이어가 없습니다.")
+    );
 
     // 승리 횟수 기준 정렬
     System.out.println("📌 승리 횟수 기준 정렬");
@@ -39,8 +43,11 @@ public class ChessGameMain {
 
     // 최고 승률 플레이어 조회
     System.out.println("📌 최고 승률 플레이어");
-    Player bestWinRatePlayer = game.getBestWinRatePlayer();
-    System.out.println(bestWinRatePlayer);
+    Optional<Player> bestWinRatePlayer = game.getBestWinRatePlayer();
+    bestWinRatePlayer.ifPresentOrElse(
+        System.out::println,
+        () -> System.out.println("최고 승률 플레이어가 없습니다.")
+    );
 
     // for-each문을 통한 순회
     System.out.println("📌 for-each문 순회");

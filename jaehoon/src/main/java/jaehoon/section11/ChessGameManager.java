@@ -21,12 +21,16 @@ public class ChessGameManager implements Iterable<Player> {
 
   // 전체 점수 조회 (점수 내림차순 정렬)
   public int[] getScores() {
-    return players.values().stream().sorted().mapToInt(Player::getScore).toArray();
+    return players.values().stream()
+                  .sorted()
+                  .mapToInt(Player::getScore)
+                  .toArray();
   }
 
   // 최고 점수 플레이어 조회
-  public Player getTopPlayer() {
-    return Collections.max(players.values(), Comparator.comparingInt(Player::getScore));
+  public Optional<Player> getTopPlayer() {
+    return players.values().stream()
+                  .max(Comparator.comparingInt(Player::getScore));
   }
 
   // 승리 횟수 기준 정렬
@@ -44,10 +48,9 @@ public class ChessGameManager implements Iterable<Player> {
   }
 
   // 최고 승률 플레이어 조회
-  public Player getBestWinRatePlayer() {
+  public Optional<Player> getBestWinRatePlayer() {
     return players.values().stream()
-                  .max(Comparator.comparingDouble(Player::getWinRate))
-                  .orElse(null);
+                  .max(Comparator.comparingDouble(Player::getWinRate));
   }
 
   @Override
