@@ -23,9 +23,22 @@ public class FrequencySort {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
 
+        // 방법 1
         PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
-                (a, b) -> Objects.equals(a.getValue(), b.getValue()) ? a.getKey() - b.getKey() : b.getValue() - a.getValue()
+                (a, b) -> {
+                    if(Objects.equals(a.getValue(), b.getValue())){
+                        return Integer.compare(a.getKey(), b.getKey());
+                    }
+                    return Integer.compare(b.getValue(), a.getValue());
+                }
         );
+
+        // 방법 2
+//        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
+//                Comparator.comparingInt(Map.Entry<Integer, Integer>::getValue).reversed()
+//                        .thenComparing(Map.Entry.comparingByKey())
+//        );
+
 
         maxHeap.addAll(frequencyMap.entrySet());
 
@@ -39,6 +52,6 @@ public class FrequencySort {
             }
         }
 
-        return sortedList.stream().mapToInt(i -> i).toArray();
+        return sortedList.stream().mapToInt(Integer::intValue).toArray();
     }
 }

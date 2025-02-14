@@ -2,8 +2,16 @@ package mission4;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParenthesisChecker {
+    private static final Map<Character, Character> matchingPairs = Map.of(
+            '(', ')',
+            '{', '}',
+            '[', ']'
+    );
+
     public static void main(String[] args) {
         System.out.println(isValid("{[()]}")); // "YES"
         System.out.println(isValid("{[(])}")); // "NO"
@@ -28,9 +36,7 @@ public class ParenthesisChecker {
     }
 
     private static boolean isMatchingPair(char left, char right) {
-        return (left == '(' && right == ')') ||
-                (left == '{' && right == '}') ||
-                (left == '[' && right == ']');
+        return matchingPairs.getOrDefault(left, ' ') == right;
     }
 }
 
