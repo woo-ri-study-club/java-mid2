@@ -3,7 +3,11 @@ package jaehoon.section10.problem02;
 import java.util.ArrayDeque;
 import java.util.Map;
 
-public class CheckParenthesisString {
+public class CheckBracketString {
+
+  private final static Map<Character, Character> BRACKET_MAP = Map.of('(', ')',
+                                                                      '{', '}',
+                                                                      '[', ']');
 
   public static void main(String[] args) {
     String s1 = "{[()]}";
@@ -17,16 +21,13 @@ public class CheckParenthesisString {
   }
 
   public static String solution(String str) {
-    Map<Character, Character> map = Map.of('(', ')',
-                                           '{', '}',
-                                           '[', ']');
 
     ArrayDeque<Character> stack = new ArrayDeque<>();
     for (char ch : str.toCharArray()) {
-      if (map.containsKey(ch)) {
+      if (BRACKET_MAP.containsKey(ch)) {
         stack.push(ch);
       } else {
-        if (stack.isEmpty() || ch != map.get(stack.pop())) {
+        if (stack.isEmpty() || ch != BRACKET_MAP.get(stack.pop())) {
           return "NO";
         }
       }
