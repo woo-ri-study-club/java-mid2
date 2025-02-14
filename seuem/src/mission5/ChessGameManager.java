@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ChessGameManager {
+
     List<Player> players = new ArrayList<>();
 
     public void addPlayer(String name) {
@@ -11,6 +12,10 @@ public class ChessGameManager {
     }
 
     public void recordMatch(String winner, String loser) {
+        if (winner.equals(loser)) {
+
+        }
+
         for (Player player : players) {
             if (player.getName().equals(winner)) {
                 player.wins();
@@ -26,7 +31,6 @@ public class ChessGameManager {
     public void getScores() {
         players.sort(null);
         System.out.println("players = " + players);
-
     }
 
     public void getTopPlayer() {
@@ -36,6 +40,5 @@ public class ChessGameManager {
     public void sortByWins() {
         players.sort(Comparator.comparing(Player::getWins).reversed());
         System.out.println("players = " + players);
-
     }
 }
