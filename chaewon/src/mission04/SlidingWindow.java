@@ -4,22 +4,22 @@ import java.util.*;
 
 public class SlidingWindow {
     public static void main(String[] args) {
-        int[] nums = {9, 11, 8, 5, 7, 10};
-        int windowSize = 2;
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int windowSize = 3;
 
         Deque<Integer> window = new ArrayDeque<>();
         List<Integer> maxNums = new ArrayList<>();
 
         slidingWindowUsingByIndex(nums, window, windowSize, maxNums);
 
-        System.out.println(Arrays.toString(maxNums.toArray()));
+        System.out.println(maxNums);
     }
 
     //개선 로직
     private static void slidingWindowUsingByIndex(int[] nums, Deque<Integer> window, int windowSize, List<Integer> maxNums) {
         for (int i = 0; i < nums.length; i++) {
             //windowSize를 초과 시 제거
-            if (!window.isEmpty() && window.peekFirst() < i - windowSize + 1) {
+            if (!window.isEmpty() && window.peekFirst() <= i - windowSize) {
                 window.pollFirst();
             }
 
