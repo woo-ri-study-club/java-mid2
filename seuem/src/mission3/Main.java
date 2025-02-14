@@ -15,15 +15,15 @@ public class Main {
         System.out.println("입력하실 단어의 갯수를 알려주세요.");
         int n = scanner.nextInt();
 
-        Set<String> treeset = new TreeSet<>();
+        Set<String> treeSet = new TreeSet<>();
         scanner.nextLine();
         for (int i = 0; i < n; i++) {
             System.out.println("단어를 입력해주세요.");
             String string = scanner.nextLine();
-            treeset.add(string);
+            treeSet.add(string);
         }
         scanner.close();
-        System.out.println(treeset);
+        System.out.println(treeSet);
     }
 
 
