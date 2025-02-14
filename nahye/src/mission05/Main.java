@@ -1,6 +1,5 @@
 package mission05;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -17,10 +16,7 @@ public class Main {
         game.recordMatch("Alice", "Charlie");
 
         System.out.println("📌 전체 점수 목록 (내림차순) ");
-        List<Player> scores = game.getScores();
-        for (Player p : scores) {
-            System.out.println(p);
-        }
+        game.printScores();
 
         System.out.println("📌 승리 횟수 기준 정렬");
         List<Player> players = game.sortByWins();
@@ -38,7 +34,7 @@ public class Main {
         System.out.println(game.getTopPlayer());
 
         System.out.println("📌 최고 승률 플레이어");
-        game.getBestWinRatePlayer();
+        game.displayBestWinRatePlayer();
 
         System.out.println("📌 Alice의 총 경기 횟수");
         int AliceMatchCount = game.getMatchCount("Alice");
