@@ -1,4 +1,4 @@
-package collection.iterator.mission04;
+package mission05;
 
 import java.util.Objects;
 
@@ -50,12 +50,12 @@ public class Player implements Comparable<Player> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return wins == player.wins && loses == player.loses && score == player.score && Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, wins, loses, score);
+        return Objects.hash(name);
     }
 
     @Override

@@ -1,10 +1,10 @@
-package collection.iterator.mission04;
+package mission05;
 
 import java.util.*;
 
 public class ChessGameManager implements Iterable<Player> {
     private final List<Player> players;
-    private final List<Player> winners;
+    private final List<String> winners;
 
     public ChessGameManager() {
         this.players = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ChessGameManager implements Iterable<Player> {
         winner.win();
         loser.lose();
 
-        winners.add(winner);
+        winners.add(winner.getName());
     }
 
     public List<Player> getScores() {
@@ -40,9 +40,7 @@ public class ChessGameManager implements Iterable<Player> {
     }
 
     public int numOfMatches(String name) {
-        Player findPlayer = findPlayer(name);
-
-        return Collections.frequency(winners, findPlayer);
+        return Collections.frequency(winners, name);
     }
 
     public List<Player> filterByScore(int minScore) {
