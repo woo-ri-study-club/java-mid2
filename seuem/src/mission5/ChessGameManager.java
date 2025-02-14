@@ -1,44 +1,45 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class ChessGameManager {
+public class ChessGameManager implements Iterable<Player> {
 
-    List<Player> players = new ArrayList<>();
+    Map<String, Player> players = new HashMap<>();
 
     public void addPlayer(String name) {
-        players.add(new Player(name));
+        players.put(name, new Player(name));
     }
 
     public void recordMatch(String winner, String loser) {
         if (winner.equals(loser)) {
-
+            System.out.println("승자와 패자가 같을 수 없습니다.");
+            return;
+        }
+        if (players.containsKey(winner) && players.containsKey(loser)) {
+            players.get(winner).wins();
+            players.get(loser).loses();
         }
 
-        for (Player player : players) {
-            if (player.getName().equals(winner)) {
-                player.wins();
-                continue;
-            }
-            if (player.getName().equals(loser)) {
-                player.loses();
-            }
-        }
-    }
-
-
-    public void getScores() {
-        players.sort(null);
-        System.out.println("players = " + players);
-    }
-
-    public void getTopPlayer() {
-        players.stream().max(Comparator.comparing(Player::getScore)).ifPresent(System.out::println);
     }
 
     public void sortByWins() {
-        players.sort(Comparator.comparing(Player::getWins).reversed());
-        System.out.println("players = " + players);
+        List<Player> sortWinners = new ArrayList<>(players.values());
+        sortWinners.sort(Comparator.comparing(Player::getWins).reversed());
+        System.out.println("players = " + sortWinners);
+    }
+
+    public void getScores() {
+        List<Player> scoreList = new ArrayList<>(players.values());
+        scoreList.sort(null);
+        System.out.println("players = " + scoreList);
+    }
+
+    public void getTopPlayer() {
+        players.values().stream().max(Comparator.comparing(Player::getScore)).ifPresent(System.out::println);
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return players.values().iterator();
     }
 }
