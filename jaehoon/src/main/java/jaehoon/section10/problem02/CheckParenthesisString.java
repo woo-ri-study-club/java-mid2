@@ -5,21 +5,15 @@ import java.util.Map;
 
 public class CheckParenthesisString {
 
-  // 입력예시:
-  // {{[[(())]]}}
-  //
-  // 출력예시:
-  // YES
-  //
   public static void main(String[] args) {
     String s1 = "{[()]}";
-    System.out.println("result1 = " + solution(s1));
+    System.out.println("result1 = " + solution(s1)); // YES
 
     String s2 = "{[(])}";
-    System.out.println("result2 = " + solution(s2));
+    System.out.println("result2 = " + solution(s2)); // NO
 
     String s3 = "{{[[(())]]}}";
-    System.out.println("result3 = " + solution(s3));
+    System.out.println("result3 = " + solution(s3)); // YES
   }
 
   public static String solution(String str) {
@@ -28,17 +22,16 @@ public class CheckParenthesisString {
                                            '[', ']');
 
     ArrayDeque<Character> stack = new ArrayDeque<>();
-    for (int i = 0; i < str.length(); i++) {
-      char ch = str.charAt(i);
+    for (char ch : str.toCharArray()) {
       if (map.containsKey(ch)) {
-        stack.addLast(ch);
+        stack.push(ch);
       } else {
-        if (stack.isEmpty() || ch != map.get(stack.pollLast())) {
+        if (stack.isEmpty() || ch != map.get(stack.pop())) {
           return "NO";
         }
       }
-
     }
+
     return stack.isEmpty() ? "YES" : "NO";
   }
 }

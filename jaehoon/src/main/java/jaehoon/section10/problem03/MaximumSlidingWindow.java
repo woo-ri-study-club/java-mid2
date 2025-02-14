@@ -35,7 +35,7 @@ public class MaximumSlidingWindow {
       }
 
       // 3. 현재 인덱스 추가
-      deque.addLast(i);
+      deque.offerLast(i);
 
       // 4. 슬라이딩 윈도우가 완성되면 결과 배열에 최대값 추가
       if (i >= k - 1) {
