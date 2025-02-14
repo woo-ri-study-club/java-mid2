@@ -13,7 +13,9 @@ public class PrioritySort {
         }
 
         PriorityQueue<Map.Entry<Integer, Integer>> priorityQueue = new PriorityQueue<>(
-                Comparator.comparingInt((Map.Entry<Integer, Integer> e) -> e.getValue()).reversed()
+                Comparator.comparingInt((Map.Entry<Integer, Integer> e) -> e.getValue())
+                        .reversed()
+                        .thenComparingInt(Map.Entry::getKey)
         );
 
         priorityQueue.addAll(priorityMap.entrySet());
