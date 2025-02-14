@@ -38,8 +38,7 @@ public class Main {
         System.out.println(game.getTopPlayer());
 
         System.out.println("📌 최고 승률 플레이어");
-        Player bestWinRatePlayer = game.getBestWinRatePlayer();
-        System.out.println(bestWinRatePlayer);
+        game.getBestWinRatePlayer();
 
         System.out.println("📌 Alice의 총 경기 횟수");
         int AliceMatchCount = game.getMatchCount("Alice");

@@ -8,11 +8,13 @@ public class ChessGameManager implements Iterable<Player> {
     private final List<String> matchHistory = new ArrayList<>();
 
     public void addPlayer(String name) {
-        Player newPlayer = new Player(name);
-        playerList.add(newPlayer);
+        playerList.add(new Player(name));
     }
 
     public void recordMatch(String winnerName, String loserName) {
+        if (winnerName.equals(loserName)) {
+            throw new IllegalArgumentException("승자와 패자가 동일할 수 없습니다.");
+        }
         Player winner = findPlayer(winnerName);
         Player loser = findPlayer(loserName);
 
@@ -20,9 +22,6 @@ public class ChessGameManager implements Iterable<Player> {
             throw new IllegalArgumentException(
                     String.format("플레이어를 찾을 수 없습니다. winner: %s, loser: %s",
                             winnerName, loserName));
-        }
-        if (winner.equals(loser)) {
-            throw new IllegalArgumentException("승자와 패자가 동일할 수 없습니다.");
         }
 
         winner.recordWin();
@@ -49,21 +48,28 @@ public class ChessGameManager implements Iterable<Player> {
         return Collections.frequency(matchHistory, playerName);
     }
 
-    public Player getTopPlayer() {
-        return Collections.max(playerList, Comparator.comparingInt(Player::getScore));
+    public Optional<Player> getTopPlayer() {
+        Player topPlayer = Collections.max(playerList, Comparator.comparingInt(Player::getScore));
+        return Optional.ofNullable(topPlayer);
     }
 
-    public Player getBestWinRatePlayer(){
-        return playerList.stream()
+    public void getBestWinRatePlayer(){
+        playerList.stream()
                 .max(Comparator.comparingDouble(player -> {
                     int totalGames = player.getWins() + player.getLosses();
                     return totalGames > 0 ? (double) player.getWins() / totalGames : 0;
                 }))
-                .orElse(null);
+                .ifPresentOrElse(
+                        p -> System.out.println(p),
+                        ()-> {
+                            throw new IllegalArgumentException("해당 플레이어가 없습니다.");
+                        }
+                );
     }
 
     public List<Player> filterByScore(int minScore){
         return playerList.stream()
+                .sorted(Player::compareTo)
                 .filter(player -> player.getScore() > minScore)
                 .toList();
     }
