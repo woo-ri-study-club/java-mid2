@@ -38,7 +38,7 @@ public class Player implements Comparable<Player> {
     score += 50;
   }
 
-  public void loss() {
+  public void lose() {
     losses++;
     score -= 30;
   }

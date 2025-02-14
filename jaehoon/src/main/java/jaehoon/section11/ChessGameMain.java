@@ -1,6 +1,5 @@
 package jaehoon.section11;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +20,8 @@ public class ChessGameMain {
 
     // 전체 점수 조회
     System.out.println("📌 전체 점수 목록");
-    int[] scores = game.getScores();// 점수 내림차순 정렬된 목록 출력
-    System.out.println(Arrays.toString(scores));
+    List<Integer> scores = game.getScores();// 점수 내림차순 정렬된 목록 출력
+    System.out.println(scores);
 
     // 최고 점수 플레이어 조회
     System.out.println("📌 최고 점수 플레이어");
@@ -34,7 +33,8 @@ public class ChessGameMain {
 
     // 승리 횟수 기준 정렬
     System.out.println("📌 승리 횟수 기준 정렬");
-    game.sortByWins();
+    List<Player> sortByWinPlayers = game.sortByWins();
+    System.out.println(sortByWinPlayers);
 
     // 특정 점수 이상 필터링
     System.out.println("📌 1000점 이상인 플레이어 필터링");
