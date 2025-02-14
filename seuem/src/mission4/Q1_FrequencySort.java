@@ -15,6 +15,11 @@ public class Q1_FrequencySort {
 
         //성빈님 코드에서 메서드 이름 뺏김!! *-*v
         System.out.println("frequencySort(nums) = " + Arrays.equals(answer, frequencySort(nums)));
+
+        int[] nums_2 = {7, 7, 7, 1,8, 8, 9};
+        int[] answer_2 = {7, 7, 7, 8, 8,1, 9};
+        System.out.println("frequencySort(nums_2) = " + Arrays.toString(frequencySort(nums_2)));
+
     }
 
     private static int[] frequencySort(int[] nums) {
@@ -23,19 +28,25 @@ public class Q1_FrequencySort {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<int[]> queue = new PriorityQueue<>(
-                (a, b) -> a[1] != b[1] ? Integer.compare(b[1], a[1]) : Integer.compare(a[0], b[0])
-        );
+        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(
+                (a, b) -> b.getValue() != a.getValue() ? Integer.compare(b.getValue(), a.getValue())
+                        : Integer.compare(a.getKey(), b.getKey()));
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            queue.add(new int[]{entry.getKey(), entry.getValue()});
+            queue.add(entry);
         }
         List<Integer> list = new ArrayList<>();
-        for (int[] ints : queue) {
-            for (int i = 0; i < ints[1]; i++) {
-                list.add(ints[0]);
+
+        //PriorityQueue는 힙 구조로 정렬하는데 힙은 전체 정렬이 아닌 최솟값(또는 최대값이 루트에 있도록 정렬된 트리 구조라서
+        //for-each로 순회하면 정렬된 값이 나오지 않는다 .poll()사용하기
+        while (!queue.isEmpty()){
+            Map.Entry<Integer,Integer> entryMap=queue.poll();
+            for (int i = 0; i < entryMap.getValue(); i++) {
+                list.add(entryMap.getKey());
             }
         }
+
+
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
