@@ -8,31 +8,28 @@ public class PrioritySort {
 
         Map<Integer, Integer> priorityMap = new HashMap<>();
 
-        for (int i : nums) {
-            priorityMap.put(i, priorityMap.getOrDefault(i, 0) + 1);
+        for (int num : nums) {
+            priorityMap.put(num, priorityMap.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((k1, k2) -> {
-            if (priorityMap.get(k1).equals(priorityMap.get(k2))) {
-                return Integer.compare(k1, k2);
-            }
+        PriorityQueue<Map.Entry<Integer, Integer>> priorityQueue = new PriorityQueue<>(
+                Comparator.comparingInt((Map.Entry<Integer, Integer> e) -> e.getValue()).reversed()
+        );
 
-            return Integer.compare(priorityMap.get(k2), priorityMap.get(k1));
-        });
-
-        priorityQueue.addAll(priorityMap.keySet());
+        priorityQueue.addAll(priorityMap.entrySet());
 
         List<Integer> result = new ArrayList<>();
 
-        priorityQueue.forEach(integer -> {
-                    int freq = priorityMap.get(integer);
+        while (!priorityQueue.isEmpty()) {
+            Map.Entry<Integer, Integer> pollEntry = priorityQueue.poll();
+            int num = pollEntry.getKey();
+            int freq = pollEntry.getValue();
 
-                    for (int i = 0; i < freq; i++) {
-                        result.add(integer);
-                    }
-                }
-        );
+            for (int i = 0; i < freq; i++) {
+                result.add(num);
+            }
+        }
 
-        System.out.println(Arrays.toString(result.toArray()));
+        System.out.println(result);
     }
 }
