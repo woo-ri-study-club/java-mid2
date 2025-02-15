@@ -13,10 +13,10 @@ public class Main {
         game.recordMatch("타노스", "김민수");
 
         System.out.println("📌 전체 점수 목록");
-        game.getScores(); // 점수 내림차순 정렬된 목록 출력
+        game.getPlayerAndPrint(); // 점수 내림차순 정렬된 목록 출력
 
         System.out.println("📌 최고 점수 플레이어");
-        game.getTopPlayer(); // 최고 점수 플레이어 출력
+        game.getTopPlayerAndPrint(); // 최고 점수 플레이어 출력
 
         System.out.println("📌 승리 횟수 기준 정렬");
         game.sortByWins(); // 승리 횟수 기준 정렬 후 출력
