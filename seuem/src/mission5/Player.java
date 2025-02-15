@@ -11,12 +11,12 @@ public class Player implements Comparable<Player> {
         this.score = 1000;
     }
 
-    public void loses() {
+    public void lose() {
         this.loses++;
         score -= 30;
     }
 
-    public void wins() {
+    public void win() {
         this.wins++;
         score += 50;
     }

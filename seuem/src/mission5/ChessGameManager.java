@@ -12,13 +12,13 @@ public class ChessGameManager implements Iterable<Player> {
 
     public void recordMatch(String winner, String loser) {
         if (winner.equals(loser)) {
-            System.out.println("승자와 패자가 같을 수 없습니다.");
-            return;
+            throw new IllegalArgumentException("승자와 패자가 같을 수 없습니다.");
         }
-        if (players.containsKey(winner) && players.containsKey(loser)) {
-            players.get(winner).wins();
-            players.get(loser).loses();
+        if (!players.containsKey(winner) || !players.containsKey(loser)) {
+            throw new IllegalArgumentException("존재하지 않는 플레이어입니다.");
         }
+        players.get(winner).win();
+        players.get(loser).lose();
 
     }
 
