@@ -25,7 +25,7 @@ public class ChessGameManager implements Iterable<Player> {
 
     public List<Player> getScores() {
         List<Player> playerList = new ArrayList<>(players.values());
-        playerList.sort(Collections.reverseOrder());
+        playerList.sort(null);
         return playerList;
     }
 
@@ -36,7 +36,8 @@ public class ChessGameManager implements Iterable<Player> {
     }
 
     public Player getTopPlayer() {
-        return Collections.max(players.values());
+        return players.values().stream()
+                .max(Comparator.comparingInt(Player::getScore)).orElse(null);
     }
 
     public Iterator<Player> iterator() {

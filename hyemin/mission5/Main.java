@@ -8,6 +8,7 @@ public class Main {
         game.addPlayer("성기훈");
         game.addPlayer("김민수");
 
+        game.recordMatch(null, null); // npe 발생 안함.
         game.recordMatch("타노스", "성기훈");
         game.recordMatch("김민수", "타노스");
         game.recordMatch("타노스", "김민수");
